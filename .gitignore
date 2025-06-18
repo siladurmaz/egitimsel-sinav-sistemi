@@ -1,0 +1,24 @@
+# .gitignore for .NET projects
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+
+# IDE files
+.vs/
+.vscode/
+
+# Rider files
+.idea/
+
+# Others
+*.db
+*.sqlite
