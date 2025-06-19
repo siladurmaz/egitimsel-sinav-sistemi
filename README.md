@@ -2,9 +2,7 @@
 ### XML Tabanlı Web Servisleri ile Tasarım, Geliştirme ve Uygulama
 
 > **Mersin Üniversitesi Bilgisayar Mühendisliği Bölümü Final Projesi**  
-> Geliştirici: Sıla Durmaz - 21220030040  
-> Danışman: [Danışman Unvan ve Adı]  
-> Haziran 2024
+> Geliştirici: Sıla Durmaz 
 
 ---
 
