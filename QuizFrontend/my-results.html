@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Platformu - Sınav Sonuçlarım</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome ikonları için -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Kendi Stil Dosyamız -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="dashboard.html" class="navbar-brand">Quiz Platformu</a>
+        <div class="navbar-user">
+            <a href="my-results.html" class="nav-link">Sonuçlarım</a>
+            <span id="welcome-message"></span>
+            <button id="logout-btn" class="logout-btn">Çıkış Yap</button>
+        </div>
+    </nav>
+
+    <!-- Ana İçerik -->
+    <main class="container">
+        <h1>Sınav Sonuçlarım</h1>
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Sınav Adı</th>
+                    <th>Skor</th>
+                    <th>Tarih</th>
+                </tr>
+            </thead>
+            <tbody id="results-tbody">
+                <!-- JavaScript, "Yükleniyor..." satırını bulup yönetecek -->
+                <tr id="loading-row">
+                    <td colspan="3" style="text-align:center;">Sonuçlar yükleniyor...</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <!-- JavaScript Kodları -->
+    <script>
+        // my-results.html içindeki script etiketinin tam ve güncel içeriği
+
+        // 1. API'mizin adresini doğru ve tek bir yerden tanımlıyoruz.
+        // Lütfen buradaki port numarasının, API'nizi çalıştırdığınızda terminalde
+        // gördüğünüz port numarasıyla aynı olduğundan emin olun.
+        const API_BASE_URL = 'http://localhost:5041';
+
+        // 2. Sayfa tamamen yüklendiğinde bu ana fonksiyon çalışacak.
+        document.addEventListener('DOMContentLoaded', async () => {
+
+            // 3. Gerekli bilgileri tarayıcının yerel depolamasından alıyoruz.
+            const token = localStorage.getItem('jwtToken');
+            const username = localStorage.getItem('username');
+
+            // 4. Güvenlik Kontrolü: Eğer token yoksa, kullanıcı giriş yapmamıştır.
+            // Hemen giriş sayfasına geri yönlendiriyoruz.
+            if (!token) {
+                window.location.href = 'index.html';
+                return; // Kodun devamının çalışmasını engelle.
+            }
+
+            // 5. Navbar'daki dinamik alanları dolduruyoruz.
+            // Karşılama mesajı
+            const welcomeMessageEl = document.getElementById('welcome-message');
+            if (welcomeMessageEl && username) {
+                welcomeMessageEl.textContent = `Merhaba, ${username}!`;
+            }
+            // Çıkış butonu
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.onclick = () => {
+                    localStorage.removeItem('jwtToken');
+                    localStorage.removeItem('username');
+                    window.location.href = 'index.html';
+                };
+            }
+
+            // 6. Tabloyu ve diğer elementleri HTML'den referans olarak alıyoruz.
+            const resultsTbody = document.getElementById('results-tbody');
+            const loadingRow = document.getElementById('loading-row'); // "Yükleniyor..." satırı için
+
+            // 7. API'den sonuçları çekmek için try-catch bloğu kullanıyoruz.
+            // Bu, ağ hatalarını veya diğer sorunları yakalamamızı sağlar.
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/results/my-results`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/json' // API'den JSON formatında veri istediğimizi belirtiyoruz.
+                    }
+                });
+
+                // 8. API'den gelen yanıtın başarılı olup olmadığını kontrol ediyoruz.
+                if (!response.ok) {
+                    // Eğer başarılı değilse, hatayı fırlatıyoruz ki catch bloğu yakalasın.
+                    throw new Error(`Sunucudan hata alındı: ${response.status}`);
+                }
+
+                const results = await response.json(); // Yanıtı JSON olarak parse et.
+
+                // "Yükleniyor..." satırını gizle
+                if (loadingRow) loadingRow.style.display = 'none';
+
+                // 9. Sonuçları tabloya ekleme
+                if (results && results.length > 0) {
+                    results.forEach(result => {
+                        const row = resultsTbody.insertRow(); // Yeni bir satır oluştur.
+
+                        // Backend'den gelen DTO'ya göre alanları kullanıyoruz:
+                        // result.quizTitle, result.score, result.totalQuestions, result.submissionDate
+                        row.innerHTML = `
+                    <td>${result.quizTitle || 'Bilinmeyen Sınav'}</td>
+                    <td>${result.score} / ${result.totalQuestions}</td>
+                    <td>${new Date(result.submissionDate).toLocaleString('tr-TR')}</td>
+                `;
+                    });
+                } else {
+                    // Eğer hiç sonuç yoksa, bilgilendirme mesajı göster.
+                    resultsTbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">Henüz çözülmüş bir sınavınız bulunmuyor.</td></tr>';
+                }
+
+            } catch (error) {
+                // "Yükleniyor..." satırını gizle
+                if (loadingRow) loadingRow.style.display = 'none';
+
+                // 10. Herhangi bir hata durumunda (ağ hatası, sunucu hatası vb.) kullanıcıyı bilgilendir.
+                resultsTbody.innerHTML = `<tr><td colspan="3" style="text-align:center;">Sonuçlar yüklenemedi. Hata: ${error.message}</td></tr>`;
+                console.error('Sonuçlar yüklenirken hata:', error); // Hatayı geliştirici konsoluna da yazdır.
+            }
+        }); 
+    </script>
+</body>
+
+</html>

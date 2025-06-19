@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.quizsystem.com/quiz"
+           xmlns="http://www.quizsystem.com/quiz"
+           elementFormDefault="qualified">
+
+  <!-- Ana Element: Quiz -->
+  <xs:element name="Quiz" type="QuizType"/>
+
+  <!-- Quiz Tipi Tanımı -->
+  <xs:complexType name="QuizType">
+    <xs:sequence>
+      <!-- Description elementi zorunlu ve boş olamaz. (Strict Ordering) -->
+      <xs:element name="Description" type="NonEmptyString" minOccurs="1" maxOccurs="1"/>
+      
+      <!-- Questions elementi zorunlu. -->
+      <xs:element name="Questions" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <!-- Question elementi en az 1 tane olmalı. (Occurrence Constraint) -->
+            <xs:element name="Question" type="QuestionType" minOccurs="1" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <!-- title attribute'u zorunlu ve boş olamaz. -->
+    <xs:attribute name="title" type="NonEmptyString" use="required"/>
+  </xs:complexType>
+
+  <!-- Question Tipi Tanımı -->
+  <xs:complexType name="QuestionType">
+    <xs:sequence>
+      <xs:element name="Text" type="NonEmptyString"/>
+      <xs:element name="Options">
+        <xs:complexType>
+          <xs:sequence>
+            <!-- Her sorunun en az 2 seçeneği olmalı. (Occurrence Constraint) -->
+            <xs:element name="Option" type="OptionType" minOccurs="2" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <!-- type attribute'u zorunlu ve sadece belirli değerleri alabilir. (Enumeration) -->
+    <xs:attribute name="type" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="single-choice"/>
+          <xs:enumeration value="multiple-choice"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Option Tipi Tanımı -->
+  <xs:complexType name="OptionType" mixed="true">
+    <xs:simpleContent>
+      <xs:extension base="NonEmptyString">
+        <!-- correct attribute'u zorunlu ve boolean olmalı. (Data Type) -->
+        <xs:attribute name="correct" type="xs:boolean" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <!-- Tekrarı önlemek için özel bir basit tip: Boş olamayan string. (Pattern) -->
+  <xs:simpleType name="NonEmptyString">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:pattern value=".*[^\s].*"/> <!-- Sadece boşluk karakterlerinden oluşmasını engeller -->
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

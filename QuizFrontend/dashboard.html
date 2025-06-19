@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <!-- head içeriği aynı kalıyor, değişiklik yok -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Platformu - Ana Sayfa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- YENİ ANA SARMALAYICI: Tüm içeriği bu kutu içine alıyoruz -->
+    <div class="page-wrapper">
+
+        <!-- Navbar artık kendi container'ına ihtiyaç duymuyor -->
+        <nav class="navbar">
+            <a href="#" class="navbar-brand">Quiz Platformu</a>
+            <div class="navbar-user">
+                <a href="my-results.html" class="nav-link">Sonuçlarım</a>
+                <span id="welcome-message"></span>
+                <button id="logout-btn" class="logout-btn">Çıkış Yap</button>
+            </div>
+        </nav>
+
+        <!-- Ana içerik de bu sarmalayıcının içinde -->
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h1>Sınavlarım</h1>
+                <button id="new-quiz-btn" class="btn-primary">
+                    <i class="fas fa-plus"></i> Yeni Sınav Oluştur
+                </button>
+            </div>
+            <div id="quiz-list-container" class="quiz-list">
+                <p id="loading-message">Sınavlar yükleniyor...</p>
+            </div>
+
+            <!-- Admin Paneli de bu ana içeriğin bir parçası -->
+            <div id="admin-panel-container">
+                <!-- Admin paneli JS ile buraya eklenecek -->
+            </div>
+        </main>
+
+    </div> <!-- .page-wrapper sonu -->
+
+
+    <!-- ========================================================== -->
+    <!-- === EKSİK OLAN VE GERİ EKLENMESİ GEREKEN BÖLÜM BURASI === -->
+    <!-- ========================================================== -->
+    <div id="quiz-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="modal-close-btn">×</button>
+            <h2 id="modal-title">Yeni Sınav Oluştur</h2>
+            <!-- Hatanın kaynağı olan id="quiz-form" burada -->
+            <form id="quiz-form">
+                <input type="hidden" id="quiz-id-input">
+                <div class="input-group">
+                    <label for="quiz-title">Sınav Başlığı</label>
+                    <input type="text" id="quiz-title" required>
+                </div>
+                <div class="input-group">
+                    <label for="quiz-description">Açıklama</label>
+                    <textarea id="quiz-description" rows="3" required></textarea>
+                </div>
+                <hr>
+                <div id="questions-container"></div>
+                <!-- Hatanın diğer kaynağı olan id="add-question-btn" burada -->
+                <button type="button" id="add-question-btn" class="btn-secondary">Soru Ekle</button>
+                <hr>
+                <button type="submit" id="save-quiz-btn" class="btn-primary">Sınavı Kaydet</button>
+            </form>
+        </div>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

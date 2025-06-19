@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Bu, temel bir sınav yapısını gösteren örnek bir XML dosyasıdır. -->
+<?xml-stylesheet type="text/xsl" href="quiz-to-html.xsl"?>
+<Quiz title="Temel Web Teknolojileri Testi" id="101" xmlns="http://www.quizsystem.com/quiz">
+  <Description>HTML, CSS ve JavaScript temellerini ölçer.</Description>
+  <Questions>
+    <Question id="1" type="multiple-choice">
+      <Text><![CDATA[HTML'de en büyük başlık etiketi hangisidir?]]></Text>
+      <Options>
+        <Option correct="false">h6</Option>
+        <Option correct="true">h1</Option>
+        <Option correct="false">head</Option>
+      </Options>
+    </Question>
+    <Question id="2" type="single-choice">
+      <Text><![CDATA[CSS'in açılımı nedir?]]></Text>
+      <Options>
+        <Option correct="true">Cascading Style Sheets</Option>
+        <Option correct="false">Creative Style Sheets</Option>
+        <Option correct="false">Computer Style Sheets</Option>
+      </Options>
+    </Question>
+  </Questions>
+</Quiz>

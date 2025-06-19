@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sınav Çözülüyor...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="quiz-page-container">
+        <!-- SINAV EKRANI: Başlangıçta görünür -->
+        <div id="quiz-container" class="quiz-box">
+            <div id="quiz-header">
+                <h1 id="quiz-title-heading">Sınav Yükleniyor...</h1>
+                <div id="quiz-progress"></div>
+            </div>
+            <div id="question-area">
+                <h2 id="question-text"></h2>
+                <div id="options-area"></div>
+            </div>
+            <div id="quiz-footer">
+                <!-- Buton tipi KESİNLİKLE "button" olmalı -->
+                <button type="button" id="next-btn" class="btn-primary">Sonraki Soru</button>
+            </div>
+        </div>
+
+        <!-- SONUÇ EKRANI: Başlangıçta GİZLİ -->
+        <!-- TÜM GEREKLİ ID'LER BURADA -->
+        <div id="result-container" class="quiz-box" style="display: none;">
+            <h1>Sınav Tamamlandı!</h1>
+            <p class="result-score">Skorunuz: <span id="score-text"></span></p>
+            <div id="summary-area"></div>
+            <button type="button" id="back-to-dashboard-btn" class="btn-primary">Ana Sayfaya Dön</button>
+        </div>
+    </div>
+
+    <script src="js/quiz.js"></script>
+</body>
+
+</html>

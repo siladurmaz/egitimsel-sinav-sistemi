@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Platformu - Giriş</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <button id="login-tab-btn" class="tab-btn active" onclick="showForm('login-form')">Giriş Yap</button>
+                <button id="register-tab-btn" class="tab-btn" onclick="showForm('register-form')">Kayıt Ol</button>
+            </div>
+
+            <!-- Giriş Formu -->
+            <form id="login-form" class="auth-form active">
+                <h2>Hoş Geldiniz!</h2>
+                <p>Devam etmek için giriş yapın.</p>
+                <div class="input-group">
+                    <label for="login-username">Kullanıcı Adı</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Şifre</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="submit-btn">Giriş Yap</button>
+                <div id="login-error-message" class="error-message"></div>
+            </form>
+
+            <!-- Kayıt Formu -->
+            <form id="register-form" class="auth-form">
+                <h2>Hesap Oluşturun</h2>
+                <p>Platforma katılmak için bilgilerinizi girin.</p>
+                <div class="input-group">
+                    <label for="register-username">Kullanıcı Adı</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-password">Şifre</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <button type="submit" class="submit-btn">Kayıt Ol</button>
+                <div id="register-error-message" class="error-message"></div>
+                <div id="register-success-message" class="success-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,619 @@
+/* Genel Sıfırlamalar ve Temel Ayarlar */
+:root {
+  --primary-color: #4a90e2;
+  --background-color: #f4f7f9;
+  --card-color: #ffffff;
+  --text-color: #333333;
+  --light-text-color: #888888;
+  --success-color: #7ed321;
+  --error-color: #d0021b;
+  --border-color: #e0e0e0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+} */
+
+/* Giriş kartının genişliğini ayarlayalım */
+.page-wrapper .auth-card {
+  max-width: 450px;
+  margin: 0 auto; /* Giriş kartını sayfanın ortasına hizala */
+}
+.auth-card {
+  background-color: var(--card-color);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.auth-tabs {
+  display: flex;
+  background-color: #f9f9f9;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 18px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--light-text-color);
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+.auth-form {
+  padding: 30px 40px;
+  display: none; /* JS ile gösterilecek */
+}
+
+.auth-form.active {
+  display: block;
+}
+
+.auth-form h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.auth-form p {
+  color: var(--light-text-color);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #357abd;
+}
+
+.error-message,
+.success-message {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  display: none; /* JS ile gösterilecek */
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: var(--error-color);
+}
+
+.success-message {
+  background-color: #e8f5e9;
+  color: var(--success-color);
+}
+/* style.css'in sonuna eklenecekler */
+
+/* Genel Konteyner */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navbar Stilleri */
+.navbar {
+  background-color: var(--card-color);
+  padding: 15px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Boşluğu biraz artıralım */
+}
+.nav-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.nav-link:hover {
+  color: var(--primary-color);
+}
+
+#welcome-message {
+  font-weight: 500;
+}
+
+.logout-btn {
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: var(--background-color);
+  border-color: #ccc;
+}
+
+/* Ana İçerik ve Başlık Stilleri */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.dashboard-header h1 {
+  font-size: 32px;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 22px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #357abd;
+}
+
+.btn-secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
+.btn-secondary:hover {
+  background-color: #d0d0d0;
+}
+
+/* Sınav Listesi ve Kart Stilleri */
+.quiz-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.quiz-card {
+  background-color: var(--card-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.quiz-card-header h3 {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.quiz-card-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--light-text-color);
+  font-size: 16px;
+  margin-left: 10px;
+  transition: color 0.3s ease;
+}
+.quiz-card-actions button:hover {
+  color: var(--primary-color);
+}
+.quiz-card-actions .delete-btn:hover {
+  color: var(--error-color);
+}
+
+.quiz-card p {
+  color: var(--light-text-color);
+  flex-grow: 1; /* Açıklamanın kartı doldurmasını sağlar */
+  margin-bottom: 20px;
+}
+
+/* Modal Stilleri */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none; /* JS ile flex yapılacak */
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 20px;
+}
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: var(--card-color);
+  border-radius: 12px;
+  padding: 30px;
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--light-text-color);
+}
+
+#quiz-form hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 25px 0;
+}
+
+.question-block {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.delete-question-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fde2e2;
+  border: none;
+  color: var(--error-color);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.option-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.option-group input[type="text"] {
+  flex-grow: 1;
+}
+
+.delete-option-btn {
+  background: none;
+  border: none;
+  color: var(--error-color);
+  cursor: pointer;
+}
+/* style.css'in sonuna eklenecekler */
+/* Önceki stilleri ezip yenilerini uygulayacak */
+
+/* Navbar Düzeltmeleri */
+.navbar {
+  background-color: var(--card-color);
+  padding: 15px 0;
+  box-shadow: 0 2px_10px rgba(0, 0, 0, 0.05);
+  width: 100%; /* Tam genişliği kapla */
+}
+
+.navbar-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Kartlara hover efekti ekleyelim */
+.quiz-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quiz-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Butonları daha şık yapalım */
+.btn-primary {
+  background-image: linear-gradient(to right, #4a90e2 0%, #0062d0 100%);
+  box-shadow: 0 4px 15px rgba(0, 118, 255, 0.3);
+}
+.btn-primary:hover {
+  background-image: linear-gradient(to right, #357abd 0%, #0050b0 100%);
+}
+
+.logout-btn {
+  border: 1px solid var(--border-color);
+  background-color: #f5f5f5;
+  font-weight: 500;
+}
+.logout-btn:hover {
+  background-color: #e9e9e9;
+  border-color: #ccc;
+}
+/* style.css'in sonuna eklenecekler */
+
+/* Sınav Çözme Sayfası Stilleri */
+.quiz-page-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.quiz-box {
+  background-color: var(--card-color);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px 40px;
+}
+
+#quiz-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#quiz-title-heading {
+  font-size: 28px;
+}
+
+#quiz-progress {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--light-text-color);
+}
+
+#question-area h2 {
+  font-size: 22px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.option-item {
+  margin-bottom: 15px;
+  display: block;
+}
+
+.option-item input[type="radio"] {
+  margin-right: 12px;
+}
+
+.option-item label {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#quiz-footer {
+  margin-top: 40px;
+  text-align: right;
+}
+
+/* Sonuç Ekranı Stilleri */
+#result-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.result-score {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.result-score span {
+  color: var(--primary-color);
+  font-size: 32px;
+}
+
+.summary-item {
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.summary-item.correct {
+  background-color: #e8f5e9;
+  border-left: 5px solid var(--success-color);
+}
+
+.summary-item.incorrect {
+  background-color: #ffebee;
+  border-left: 5px solid var(--error-color);
+}
+
+.summary-item p {
+  margin-bottom: 5px;
+}
+
+#result-container a {
+  display: block;
+  width: fit-content;
+  margin: 30px auto 0;
+}
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.results-table th,
+.results-table td {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+.results-table th {
+  background-color: var(--background-color);
+}
+.page-wrapper {
+  width: 100%;
+  max-width: 1200px; /* Sayfanın maksimum genişliği */
+  margin: 40px auto; /* Üstten-alttan 40px, sağdan-soldan otomatik boşluk (ortalama) */
+  padding: 0 20px; /* Küçük ekranlarda kenarlara yapışmasın */
+}
+
+/* Navbar'ı bir kart gibi yapalım */
+.navbar {
+  background-color: var(--card-color);
+  border-radius: 12px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Ana içeriği de bir kart gibi yapalım */
+.main-content {
+  background-color: var(--card-color);
+  border-radius: 12px;
+  padding: 30px 40px;
+  margin-top: 30px; /* Navbar ile arasına boşluk koyalım */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+/* Admin paneli için ayırıcı */
+#admin-panel-container {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border-color);
+}
+/* Son Tasarım Dokunuşları */
+
+/* Kartlardaki ve butonlardaki ikonları daha belirgin yapalım */
+.quiz-card-actions button i,
+.btn-primary i {
+  font-size: 14px; /* İkon boyutunu ayarla */
+}
+
+/* Tabloları daha modern yapalım */
+.results-table {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden; /* Köşelerin yuvarlak görünmesini sağlar */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.results-table th,
+.results-table td {
+  border: none; /* İç çizgileri kaldıralım */
+  border-bottom: 1px solid var(--border-color); /* Sadece satır ayıracı kalsın */
+}
+.results-table tr:last-child td {
+  border-bottom: none; /* Son satırın altındaki çizgiyi kaldır */
+}
+.results-table th {
+  background-color: #f9fafb; /* Başlık için çok hafif bir gri */
+  font-weight: 600;
+}
