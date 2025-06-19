@@ -45,3 +45,29 @@ Sistem sayesinde:
    ```sh
    git clone https://github.com/KULLANICI_ADIN/egitimsel-sinav-sistemi.git
    cd egitimsel-sinav-sistemi
+   ## Kurulum ve Çalıştırma
+
+1. **Projeyi Klonla**
+    ```sh
+    git clone https://github.com/siladurmaz/egitimsel-sinav-sistemi.git
+    cd egitimsel-sinav-sistemi
+    ```
+
+2. **Backend'i Başlat**
+    ```sh
+    cd QuizApi
+    dotnet restore
+    dotnet ef database update
+    dotnet run
+    ```
+    API varsayılan olarak [http://localhost:5041](http://localhost:5041) adresinde çalışır.
+
+3. **Frontend'i Aç**
+    ```sh
+    cd QuizFrontend
+    ```
+    `index.html` dosyasını tarayıcıda açabilirsin.
+
+4. **Swagger ile API Testi**
+    [http://localhost:5041/swagger](http://localhost:5041/swagger) adresinden API endpoint'lerini test edebilirsin.
+
