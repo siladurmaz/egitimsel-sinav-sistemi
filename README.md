@@ -43,15 +43,9 @@ Sistem sayesinde:
 
 1. **Projeyi Klonla:**
    ```sh
-   git clone https://github.com/KULLANICI_ADIN/egitimsel-sinav-sistemi.git
+   git clone https://github.com/siladurmaz/egitimsel-sinav-sistemi.git
    cd egitimsel-sinav-sistemi
    ## Kurulum ve Çalıştırma
-
-1. **Projeyi Klonla**
-    ```sh
-    git clone https://github.com/siladurmaz/egitimsel-sinav-sistemi.git
-    cd egitimsel-sinav-sistemi
-    ```
 
 2. **Backend'i Başlat**
     ```sh
